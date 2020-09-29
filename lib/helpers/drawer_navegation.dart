@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sqlite/screen/CategoriesScreen.dart';
 import 'package:sqlite/screen/HomeScreen.dart';
 import 'package:sqlite/screen/OcorrenciasScreen.dart';
+import 'package:sqlite/screen/SubCategoriaScreen.dart';
 
 class DrawerNavegation extends StatefulWidget {
   @override
@@ -39,6 +40,11 @@ class _DrawerNavegationState extends State<DrawerNavegation> {
               title: Text('Ocorrencias'),
               onTap: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Ocorrencias())),
+            ),
+            ListTile(
+              title: Text('Subcategorias'),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SubcategoriaScreen())),
             ),
           ],
         ),
