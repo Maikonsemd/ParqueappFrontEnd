@@ -18,5 +18,14 @@ class DatabaseConnection {
     //create table todos
     await database.execute(
         "CREATE TABLE todos(id INTEGER PRIMARY KEY, title TEXT, description TEXT, category TEXT, todoDate TEXT, isFinished INTEGER)");
+    //create table subcategoria
+    await database.execute(
+        "CREATE TABLE subcategorias(id INTEGER PRIMARY KEY, name TEXT, description TEXT, category TEXT)");
+    //create table locais
+    await database.execute(
+        "CREATE TABLE locais(id INTEGER PRIMARY KEY, name TEXT, description TEXT, regiao TEXT)");
+    //create table regiao
+    await database.execute(
+        "CREATE TABLE regiao(id INTEGER PRIMARY KEY, name TEXT, description TEXT, category TEXT)");
   }
 }
