@@ -4,6 +4,8 @@ import 'package:sqlite/Services/category_services.dart';
 import 'package:intl/intl.dart';
 import 'package:sqlite/Services/todo_services.dart';
 import 'package:sqlite/models/todo.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class Ocorrencias extends StatefulWidget {
   @override
@@ -21,6 +23,22 @@ class _OcorrenciasState extends State<Ocorrencias> {
   var _categories = List<DropdownMenuItem>();
 
   var _selectvalue;
+
+//Começo imagepicker
+  File _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -75,6 +93,7 @@ class _OcorrenciasState extends State<Ocorrencias> {
         child: Column(
           children: <Widget>[
             // TextField(
+
             //   controller: todoTitleController,
             //   decoration: InputDecoration(
             //       labelText: 'text',
@@ -99,6 +118,16 @@ class _OcorrenciasState extends State<Ocorrencias> {
             //         child: Icon(Icons.calendar_today),
             //       )),
             // ),
+            Center(
+              child: _image == null
+                  ? Text('No image selected.')
+                  : Image.file(_image),
+            ),
+            FloatingActionButton(
+              onPressed: getImage,
+              tooltip: 'Pick Image',
+              child: Icon(Icons.add_a_photo),
+            ),
             SizedBox(
               height: 10,
             ),
